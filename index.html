@@ -3,230 +3,608 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LRN Hub - متجر الخدمات</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="LRN Hub - متجر الخدمات المتكامل للبوتات واليوزرات و APIs">
+    <meta name="theme-color" content="#6c5ce7">
+    <title>LRN Hub | متجر الخدمات المتكامل</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <span class="logo-icon">⚡</span>
-                <h1>LRN <span>Hub</span></h1>
-            </div>
-            <p class="tagline">متجر الخدمات المتكامل - للطلب افتح تذكرة في الدسكورد</p>
-            <a href="https://discord.gg/lrn" target="_blank" class="btn-discord-header">
-                <span class="discord-icon">🎧</span> فتح تذكرة - Discord
-            </a>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">LRN Hub</div>
         </div>
-    </header>
+    </div>
 
-    <main class="container">
-        <!-- قسم البوت الخاص -->
-        <section class="service-section">
-            <div class="section-header">
-                <span class="section-icon">🤖</span>
-                <h2>بوت خاص فيك / OWN C2</h2>
-            </div>
-            <div class="card featured-card">
-                <div class="card-badge">الأكثر مبيعاً</div>
-                <div class="card-content">
-                    <h3>بوت متكامل</h3>
-                    <ul class="features-list">
-                        <li><span class="check">✓</span> H9CNC</li>
-                        <li><span class="check">✓</span> VPS خاص</li>
-                        <li><span class="check">✓</span> واجهة API 2con</li>
-                        <li><span class="check">✓</span> 20 ثانية كوول داون</li>
-                        <li><span class="check">✓</span> أقصى مدة للهجوم: 80 ثانية</li>
-                        <li><span class="check">✓</span> سلاوت خاصة (priv-slot)</li>
-                        <li><span class="check">✓</span> تصميم حصري لك</li>
-                        <li><span class="check">✓</span> بوت متكامل</li>
-                    </ul>
-                    <div class="price-box">
-                        <span class="price">79<span class="currency">$</span></span>
-                        <span class="price-sar">300 ريال سعودي</span>
-                    </div>
-                    <a href="https://discord.gg/lrn" target="_blank" class="btn-buy">🎫 فتح تذكرة للشراء</a>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-wrapper">
+                    <svg class="logo-svg" viewBox="0 0 50 50" width="45" height="45">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#a29bfe;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="25,5 47,45 3,45" fill="url(#logoGradient)" />
+                        <text x="25" y="38" text-anchor="middle" fill="white" font-size="18" font-weight="bold">L</text>
+                    </svg>
+                    <span class="brand-text">LRN <span class="highlight">Hub</span></span>
                 </div>
             </div>
-        </section>
-
-        <!-- قسم اليوزرات -->
-        <section class="service-section">
-            <div class="section-header">
-                <span class="section-icon">👤</span>
-                <h2>أسعار اليوزرات</h2>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i> الرئيسية
+                </a>
+                <a href="#services" class="nav-link" data-section="services">
+                    <i class="fas fa-cubes"></i> الخدمات
+                </a>
+                <a href="#pricing" class="nav-link" data-section="pricing">
+                    <i class="fas fa-tags"></i> الأسعار
+                </a>
+                <a href="#stats" class="nav-link" data-section="stats">
+                    <i class="fas fa-chart-bar"></i> الإحصائيات
+                </a>
+                <a href="https://discord.gg/lrn" target="_blank" class="nav-cta">
+                    <i class="fab fa-discord"></i> فتح تذكرة
+                </a>
             </div>
-            <div class="cards-grid">
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                متاح 24/7
+            </div>
+            <h1 class="hero-title">
+                <span class="gradient-text">LRN Hub</span>
+                <br>
+                <span class="typing-text" id="typingText"></span>
+            </h1>
+            <p class="hero-description">
+                منصتك المتكاملة لأقوى البوتات واليوزرات وخدمات API
+                <br>
+                بأسعار تنافسية وجودة عالية مع دعم فني مميز
+            </p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary btn-glitch">
+                    <span>استعرض الخدمات</span>
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="https://discord.gg/lrn" target="_blank" class="btn btn-discord btn-glow">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="500">0</span>
+                    <span class="stat-plus">+</span>
+                    <span class="stat-label">عميل</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10000">0</span>
+                    <span class="stat-plus">+</span>
+                    <span class="stat-label">بوت</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="99">0</span>
+                    <span class="stat-percent">%</span>
+                    <span class="stat-label">رضا العملاء</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="hero-card-3d">
+                <div class="card-3d-inner">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>حماية متكاملة</h3>
+                    <p>أقوى البوتات بأحدث التقنيات</p>
+                </div>
+            </div>
+        </div>
+    </hero>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <span class="section-subtitle">خدماتنا</span>
+            <h2 class="section-title">
+                <span class="gradient-text">خدمات</span> متكاملة
+            </h2>
+            <p class="section-description">نقدم مجموعة من الخدمات المتميزة لتلبية جميع احتياجاتك</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>بوت خاص OWN C2</h3>
+                <p>بوت متكامل بتصميم حصري مع VPS و H9CNC وسلاوت خاصة</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> H9CNC مدمج</li>
+                    <li><i class="fas fa-check"></i> VPS خاص</li>
+                    <li><i class="fas fa-check"></i> تصميم حصري</li>
+                    <li><i class="fas fa-check"></i> سلاوت خاصة</li>
+                </ul>
+                <a href="#pricing" class="service-link">
+                    المزيد <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="service-card featured-service" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-badge">الأكثر طلباً</div>
+                <div class="service-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>يوزرات LRN</h3>
+                <p>يوزرات متعددة المستويات بأسعار تنافسية مع مميزات VIP</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> 5 مستويات مختلفة</li>
+                    <li><i class="fas fa-check"></i> مدة هجوم تصل لـ 240s</li>
+                    <li><i class="fas fa-check"></i> كوول داون يصل لـ 5s</li>
+                    <li><i class="fas fa-check"></i> ميثود خاص</li>
+                </ul>
+                <a href="#pricing" class="service-link">
+                    المزيد <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h3>API احترافي</h3>
+                <p>واجهات API قوية مع 10,000+ بوت وميثود متكامل</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> اتصال مزدوج</li>
+                    <li><i class="fas fa-check"></i> حساب VIP</li>
+                    <li><i class="fas fa-check"></i> 30 يوم صلاحية</li>
+                    <li><i class="fas fa-check"></i> 10K+ بوت</li>
+                </ul>
+                <a href="#pricing" class="service-link">
+                    المزيد <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <span class="section-subtitle">الباقات</span>
+            <h2 class="section-title">
+                <span class="gradient-text">أسعار</span> اليوزرات
+            </h2>
+            <p class="section-description">اختر الباقة المناسبة لك من بين باقاتنا المتعددة</p>
+        </div>
+
+        <!-- User Plans -->
+        <div class="pricing-tabs">
+            <button class="tab-btn active" data-tab="users">اليوزرات</button>
+            <button class="tab-btn" data-tab="api">API</button>
+            <button class="tab-btn" data-tab="bot">البوت الخاص</button>
+        </div>
+
+        <div class="tab-content active" id="users">
+            <div class="pricing-grid">
                 <!-- Starter -->
-                <div class="card">
-                    <div class="card-header">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
                         <h3>LRN Starter</h3>
-                        <span class="badge badge-bronze">Starter</span>
+                        <div class="plan-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="price">38 <span>SAR</span></div>
-                        <ul class="specs-list">
-                            <li><strong>Connections:</strong> 1</li>
-                            <li><strong>Max Time:</strong> 60s</li>
-                            <li><strong>Cooldown:</strong> 60s</li>
-                            <li><strong>VIP:</strong> <span class="no">✗</span></li>
+                    <div class="pricing-card-body">
+                        <div class="plan-price">
+                            <span class="currency">SAR</span>
+                            <span class="amount">38</span>
+                            <span class="period">شهرياً</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: <strong>1</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Max Time: <strong>60s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Cooldown: <strong>60s</strong></li>
+                            <li><i class="fas fa-times-circle"></i> VIP: <span class="text-red">لا</span></li>
                         </ul>
-                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-outline btn-full">
+                            <i class="fab fa-discord"></i> شراء
+                        </a>
                     </div>
                 </div>
 
                 <!-- Advanced -->
-                <div class="card">
-                    <div class="card-header">
+                <div class="pricing-card popular">
+                    <div class="popular-badge">الأكثر مبيعاً</div>
+                    <div class="pricing-card-header">
                         <h3>LRN Advanced</h3>
-                        <span class="badge badge-silver">Advanced</span>
+                        <div class="plan-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="price">45 <span>SAR</span></div>
-                        <ul class="specs-list">
-                            <li><strong>Connections:</strong> 1</li>
-                            <li><strong>Max Time:</strong> 60s</li>
-                            <li><strong>Cooldown:</strong> 40s</li>
-                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
+                    <div class="pricing-card-body">
+                        <div class="plan-price">
+                            <span class="currency">SAR</span>
+                            <span class="amount">45</span>
+                            <span class="period">شهرياً</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: <strong>1</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Max Time: <strong>60s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Cooldown: <strong>40s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> VIP: <span class="text-green">نعم</span></li>
                         </ul>
-                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-primary btn-full">
+                            <i class="fab fa-discord"></i> شراء
+                        </a>
                     </div>
                 </div>
 
                 <!-- Pro -->
-                <div class="card">
-                    <div class="card-header">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
                         <h3>LRN Pro</h3>
-                        <span class="badge badge-gold">Pro</span>
+                        <div class="plan-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="price">80 <span>SAR</span></div>
-                        <ul class="specs-list">
-                            <li><strong>Connections:</strong> 2</li>
-                            <li><strong>Max Time:</strong> 120s</li>
-                            <li><strong>Cooldown:</strong> 25s</li>
-                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
+                    <div class="pricing-card-body">
+                        <div class="plan-price">
+                            <span class="currency">SAR</span>
+                            <span class="amount">80</span>
+                            <span class="period">شهرياً</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: <strong>2</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Max Time: <strong>120s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Cooldown: <strong>25s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> VIP: <span class="text-green">نعم</span></li>
                         </ul>
-                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-outline btn-full">
+                            <i class="fab fa-discord"></i> شراء
+                        </a>
                     </div>
                 </div>
 
                 <!-- Elite -->
-                <div class="card">
-                    <div class="card-header">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
                         <h3>LRN Elite</h3>
-                        <span class="badge badge-purple">Elite</span>
+                        <div class="plan-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="price">130 <span>SAR</span></div>
-                        <ul class="specs-list">
-                            <li><strong>Connections:</strong> 2</li>
-                            <li><strong>Max Time:</strong> 120s</li>
-                            <li><strong>Cooldown:</strong> 10s</li>
-                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
-                            <li><strong>Extra:</strong> Own Methods</li>
+                    <div class="pricing-card-body">
+                        <div class="plan-price">
+                            <span class="currency">SAR</span>
+                            <span class="amount">130</span>
+                            <span class="period">شهرياً</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: <strong>2</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Max Time: <strong>120s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Cooldown: <strong>10s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> VIP: <span class="text-green">نعم</span></li>
+                            <li><i class="fas fa-star"></i> Own Methods</li>
                         </ul>
-                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-outline btn-full">
+                            <i class="fab fa-discord"></i> شراء
+                        </a>
                     </div>
                 </div>
 
                 <!-- Ultimate -->
-                <div class="card ultimate-card">
-                    <div class="card-header">
+                <div class="pricing-card ultimate">
+                    <div class="pricing-card-header">
                         <h3>LRN Ultimate</h3>
-                        <span class="badge badge-legendary">Ultimate</span>
+                        <div class="plan-icon">
+                            <i class="fas fa-skull"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="price">225 <span>SAR</span></div>
-                        <ul class="specs-list">
-                            <li><strong>Connections:</strong> 3</li>
-                            <li><strong>Max Time:</strong> 240s</li>
-                            <li><strong>Cooldown:</strong> 5s</li>
-                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
-                            <li><strong>Extra:</strong> Custom Method + Design</li>
+                    <div class="pricing-card-body">
+                        <div class="plan-price">
+                            <span class="currency">SAR</span>
+                            <span class="amount">225</span>
+                            <span class="period">شهرياً</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: <strong>3</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Max Time: <strong>240s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Cooldown: <strong>5s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> VIP: <span class="text-green">نعم</span></li>
+                            <li><i class="fas fa-star"></i> Custom Method + Design</li>
                         </ul>
-                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-primary btn-full btn-glow">
+                            <i class="fab fa-discord"></i> شراء
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- الإضافات -->
-            <div class="addons-section">
-                <h3>🧩 الإضافات</h3>
+            <!-- Add-ons -->
+            <div class="addons">
+                <h3><i class="fas fa-puzzle-piece"></i> الإضافات</h3>
                 <div class="addons-grid">
-                    <div class="addon-card">
-                        <span class="addon-icon">⚡</span>
-                        <p>Custom Named Method</p>
-                        <span class="addon-price">25 SAR</span>
+                    <div class="addon-item">
+                        <div class="addon-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="addon-info">
+                            <h4>Custom Named Method</h4>
+                            <p>ميثود مخصص باسمك</p>
+                        </div>
+                        <div class="addon-price">25 SAR</div>
                     </div>
-                    <div class="addon-card">
-                        <span class="addon-icon">🎨</span>
-                        <p>Custom Design</p>
-                        <span class="addon-price">50 SAR</span>
+                    <div class="addon-item">
+                        <div class="addon-icon"><i class="fas fa-palette"></i></div>
+                        <div class="addon-info">
+                            <h4>Custom Design</h4>
+                            <p>تصميم حصري مخصص</p>
+                        </div>
+                        <div class="addon-price">50 SAR</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- قسم API -->
-        <section class="service-section">
-            <div class="section-header">
-                <span class="section-icon">🔌</span>
-                <h2>API</h2>
-            </div>
-            <div class="cards-grid api-grid">
+        <!-- API Tab -->
+        <div class="tab-content" id="api">
+            <div class="pricing-grid api-grid">
                 <!-- API 1 Con -->
-                <div class="card api-card">
-                    <div class="card-header">
+                <div class="pricing-card api-card">
+                    <div class="pricing-card-header">
                         <h3>API 1 Connection</h3>
-                        <span class="badge badge-silver">Basic</span>
+                        <div class="plan-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="price">80<span class="currency">$</span></div>
-                        <ul class="specs-list">
-                            <li><strong>Connections:</strong> 1</li>
-                            <li><strong>Cooldown:</strong> 25s</li>
-                            <li><strong>Max Time:</strong> 60s</li>
-                            <li><strong>Duration:</strong> 30 Days</li>
-                            <li><strong>Methods:</strong> All 10k+ Bots</li>
-                            <li><strong>Account:</strong> VIP</li>
+                    <div class="pricing-card-body">
+                        <div class="plan-price dollar-price">
+                            <span class="currency">$</span>
+                            <span class="amount">80</span>
+                            <span class="period">30 يوم</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: <strong>1</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Cooldown: <strong>25s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Max Time: <strong>60s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Account: <strong class="text-green">VIP</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Methods: <strong>10K+ Bots</strong></li>
                         </ul>
-                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-outline btn-full">
+                            <i class="fab fa-discord"></i> شراء
+                        </a>
                     </div>
                 </div>
 
                 <!-- API 2 Con -->
-                <div class="card api-card featured-api">
-                    <div class="card-badge">الأفضل قيمة</div>
-                    <div class="card-header">
+                <div class="pricing-card api-card featured-api">
+                    <div class="api-badge">الأفضل قيمة</div>
+                    <div class="pricing-card-header">
                         <h3>API 2 Connection</h3>
-                        <span class="badge badge-gold">Premium</span>
+                        <div class="plan-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="price">120<span class="currency">$</span></div>
-                        <ul class="specs-list">
-                            <li><strong>Connections:</strong> 2</li>
-                            <li><strong>Cooldown:</strong> 25s</li>
-                            <li><strong>Max Time:</strong> 60s</li>
-                            <li><strong>Duration:</strong> 30 Days</li>
-                            <li><strong>Methods:</strong> All 10k+ Bots</li>
-                            <li><strong>Account:</strong> VIP</li>
+                    <div class="pricing-card-body">
+                        <div class="plan-price dollar-price">
+                            <span class="currency">$</span>
+                            <span class="amount">120</span>
+                            <span class="period">30 يوم</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: <strong>2</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Cooldown: <strong>25s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Max Time: <strong>60s</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Account: <strong class="text-green">VIP</strong></li>
+                            <li><i class="fas fa-check-circle"></i> Methods: <strong>10K+ Bots</strong></li>
                         </ul>
-                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-primary btn-full btn-glow">
+                            <i class="fab fa-discord"></i> شراء
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2024 LRN Hub - جميع الحقوق محفوظة</p>
-            <p>للطلب والاستفسار: <a href="https://discord.gg/lrn" target="_blank">discord.gg/lrn</a></p>
+        <!-- Bot Tab -->
+        <div class="tab-content" id="bot">
+            <div class="bot-showcase">
+                <div class="bot-card-premium">
+                    <div class="bot-card-glow"></div>
+                    <div class="bot-card-content">
+                        <div class="bot-premium-badge">⚡ الأكثر مبيعاً</div>
+                        <h2>بوت OWN C2 المتكامل</h2>
+                        <p class="bot-subtitle">الباقة الكاملة مع كل المميزات الحصرية</p>
+                        <div class="bot-features-premium">
+                            <div class="feature-item">
+                                <i class="fas fa-microchip"></i>
+                                <span>H9CNC</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-server"></i>
+                                <span>VPS خاص</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-plug"></i>
+                                <span>API 2con</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Cooldown 20s</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-stopwatch"></i>
+                                <span>Max Time 80s</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Priv-Slot</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-paint-brush"></i>
+                                <span>تصميم حصري</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-box"></i>
+                                <span>بوت متكامل</span>
+                            </div>
+                        </div>
+                        <div class="bot-pricing">
+                            <div class="price-usd">
+                                <span class="big-price">79</span>
+                                <span class="price-currency">$ USD</span>
+                            </div>
+                            <div class="price-divider">|</div>
+                            <div class="price-sar">
+                                <span class="big-price">300</span>
+                                <span class="price-currency">ريال سعودي</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn btn-primary btn-lg btn-glow">
+                            <i class="fab fa-discord"></i>
+                            افتح تذكرة للشراء
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="stats-overlay"></div>
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-info">
+                        <span class="counter" data-target="500">0</span>
+                        <span>+</span>
+                    </div>
+                    <p>عميل سعيد</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="stat-info">
+                        <span class="counter" data-target="2500">0</span>
+                        <span>+</span>
+                    </div>
+                    <p>عملية ناجحة</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-headset"></i>
+                    <div class="stat-info">
+                        <span class="counter" data-target="24">0</span>
+                        <span>/7</span>
+                    </div>
+                    <p>دعم فني</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-shield-halved"></i>
+                    <div class="stat-info">
+                        <span class="counter" data-target="99">0</span>
+                        <span>%</span>
+                    </div>
+                    <p>أمان وموثوقية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord CTA -->
+    <section class="discord-cta">
+        <div class="cta-content">
+            <div class="cta-icon">
+                <i class="fab fa-discord"></i>
+            </div>
+            <h2>جاهز تطلب؟</h2>
+            <p>جميع الطلبات عن طريق فتح تذكرة في سيرفر الدسكورد</p>
+            <a href="https://discord.gg/lrn" target="_blank" class="btn btn-discord btn-lg btn-glow">
+                <i class="fab fa-discord"></i>
+                discord.gg/lrn
+                <span class="btn-arrow"><i class="fas fa-arrow-left"></i></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-bolt"></i>
+                        <span>LRN Hub</span>
+                    </div>
+                    <p>متجر الخدمات المتكامل للبوتات واليوزرات</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/lrn" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <a href="#home">الرئيسية</a>
+                    <a href="#services">الخدمات</a>
+                    <a href="#pricing">الأسعار</a>
+                    <a href="#stats">الإحصائيات</a>
+                </div>
+                <div class="footer-links">
+                    <h4>الخدمات</h4>
+                    <a href="#bot">بوت خاص</a>
+                    <a href="#pricing">اليوزرات</a>
+                    <a href="#api">API</a>
+                    <a href="#addons">الإضافات</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <a href="https://discord.gg/lrn" target="_blank">
+                        <i class="fab fa-discord"></i> Discord
+                    </a>
+                    <p><i class="fas fa-clock"></i> 24/7 دعم</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LRN Hub. جميع الحقوق محفوظة.</p>
+                <p class="footer-made">Made with <i class="fas fa-heart"></i> by LRN Team</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
