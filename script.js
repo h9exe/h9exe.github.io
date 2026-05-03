@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', hidePreloader);
     setTimeout(hidePreloader, 2000);
 
-    // 2. Custom Cursor - Improved logic and visibility
+    // 2. Custom Cursor - قمنا بإخفائه افتراضياً، لكن لو أردت تفعيله أزل التعليقات
+    /*
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
     
     if (cursor && follower) {
-        // Ensure they are visible
         cursor.style.display = 'block';
         follower.style.display = 'block';
 
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.clientX;
             const y = e.clientY;
             
-            // Use requestAnimationFrame for smoother movement
             requestAnimationFrame(() => {
                 cursor.style.left = x + 'px';
                 cursor.style.top = y + 'px';
@@ -47,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    */
 
     // 3. Typing Effect - Fixed logic
     const typingText = document.getElementById('typingText');
@@ -90,7 +90,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. Tabs
+    // 5. Mobile Menu Toggle (إضافة جديدة)
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // إغلاق القائمة عند الضغط على أي رابط
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    }
+
+    // 6. Tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -105,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Stats Counter
+    // 7. Stats Counter
     const counters = document.querySelectorAll('.counter, .stat-number');
     const observerOptions = { threshold: 0.5 };
     const observer = new IntersectionObserver((entries) => {
@@ -130,4 +149,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     counters.forEach(c => observer.observe(c));
+
+    // 8. Scroll to Top Button
+    const scrollTopBtn = document.getElementById('scrollTop');
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.style.display = 'block';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
