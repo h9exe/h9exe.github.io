@@ -9,7 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">LRN Hub</div>
+        </div>
+    </div>
+
     <div id="particles-js"></div>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
     
     <nav class="navbar scrolled">
         <div class="nav-container">
@@ -21,8 +30,7 @@
             </div>
             <div class="nav-menu">
                 <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="#users" class="nav-link active">اليوزرات</a>
-                <a href="#api" class="nav-link">API</a>
+                <a href="index.html#pricing" class="nav-link active">الأسعار</a>
                 <a href="https://discord.gg/lrn" target="_blank" class="nav-cta">
                     <i class="fab fa-discord"></i> فتح تذكرة
                 </a>
@@ -31,13 +39,33 @@
     </nav>
 
     <main style="padding-top:120px;">
-        <!-- Full products display here (same as pricing in index.html) -->
         <h1 style="text-align:center;font-size:2.5rem;margin:40px 0;">
             <span class="gradient-text">جميع المنتجات</span>
         </h1>
         
-        <!-- Copy the full pricing section from index.html here -->
-        <!-- ... -->
+        <section class="pricing" style="padding-top:0;">
+            <div class="pricing-grid">
+                <!-- المنتجات هنا مشابهة لصفحة index.html -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">الأكثر مبيعاً</div>
+                    <div class="pricing-card-header">
+                        <h3>LRN Advanced</h3>
+                    </div>
+                    <div class="pricing-card-body">
+                        <div class="plan-price">
+                            <span class="currency">SAR</span>
+                            <span class="amount">45</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check-circle"></i> Connections: 1</li>
+                            <li><i class="fas fa-check-circle"></i> VIP: نعم</li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" class="btn btn-primary btn-full">شراء الآن</a>
+                    </div>
+                </div>
+                <!-- يمكن إضافة باقي المنتجات هنا -->
+            </div>
+        </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
