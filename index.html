@@ -3,135 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LRN HUB | Premium Elite Services</title>
+    <title>LRN Hub - متجر الخدمات</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-animation"></div>
-
-    <nav>
-        <div class="nav-container">
-            <div class="logo">LRN <span>HUB</span></div>
-            <a href="https://discord.gg/lrn" class="discord-nav"><i class="fab fa-discord"></i> Discord</a>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <h1>LRN <span>Hub</span></h1>
+            </div>
+            <p class="tagline">متجر الخدمات المتكامل - للطلب افتح تذكرة في الدسكورد</p>
+            <a href="https://discord.gg/lrn" target="_blank" class="btn-discord-header">
+                <span class="discord-icon">🎧</span> فتح تذكرة - Discord
+            </a>
         </div>
-    </nav>
-
-    <header class="hero">
-        <h1 class="glitch-title">ELITE SOLUTIONS</h1>
-        <p>واجهتك الأولى لأقوى أدوات الـ C2 والخدمات الشبكية</p>
     </header>
 
-    <div class="container">
-        <!-- Section 1: OWN C2 -->
-        <section id="own-c2">
-            <h2 class="main-title">OWN C2 / بوت خاص فيك</h2>
-            <div class="mega-card highlight">
+    <main class="container">
+        <!-- قسم البوت الخاص -->
+        <section class="service-section">
+            <div class="section-header">
+                <span class="section-icon">🤖</span>
+                <h2>بوت خاص فيك / OWN C2</h2>
+            </div>
+            <div class="card featured-card">
+                <div class="card-badge">الأكثر مبيعاً</div>
                 <div class="card-content">
-                    <div class="specs">
-                        <div class="spec-item"><i class="fas fa-server"></i> H9CNC & VPS Included</div>
-                        <div class="spec-item"><i class="fas fa-code"></i> API 2con Interface</div>
-                        <div class="spec-item"><i class="fas fa-bolt"></i> 20s Cooldown / 80s Max Attack</div>
-                        <div class="spec-item"><i class="fas fa-shield-alt"></i> Private Slot (Priv-slot)</div>
-                        <div class="spec-item"><i class="fas fa-paint-brush"></i> Exclusive Design & Complete Package</div>
+                    <h3>بوت متكامل</h3>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> H9CNC</li>
+                        <li><span class="check">✓</span> VPS خاص</li>
+                        <li><span class="check">✓</span> واجهة API 2con</li>
+                        <li><span class="check">✓</span> 20 ثانية كوول داون</li>
+                        <li><span class="check">✓</span> أقصى مدة للهجوم: 80 ثانية</li>
+                        <li><span class="check">✓</span> سلاوت خاصة (priv-slot)</li>
+                        <li><span class="check">✓</span> تصميم حصري لك</li>
+                        <li><span class="check">✓</span> بوت متكامل</li>
+                    </ul>
+                    <div class="price-box">
+                        <span class="price">79<span class="currency">$</span></span>
+                        <span class="price-sar">300 ريال سعودي</span>
                     </div>
-                    <div class="pricing-area">
-                        <div class="price-box">
-                            <span class="usd">79$ USD</span>
-                            <span class="sar">300 SAR</span>
-                        </div>
-                        <a href="https://discord.gg/lrn" class="cta-button">اطلب البوت الخاص بك الآن</a>
-                    </div>
+                    <a href="https://discord.gg/lrn" target="_blank" class="btn-buy">🎫 فتح تذكرة للشراء</a>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: User Plans -->
-        <section id="plans">
-            <h2 class="main-title">Prices | أسعار اليوزرات</h2>
-            <div class="pricing-grid">
+        <!-- قسم اليوزرات -->
+        <section class="service-section">
+            <div class="section-header">
+                <span class="section-icon">👤</span>
+                <h2>أسعار اليوزرات</h2>
+            </div>
+            <div class="cards-grid">
                 <!-- Starter -->
-                <div class="plan-card">
-                    <h3>LRN Starter</h3>
-                    <div class="price">38<span>SAR</span></div>
-                    <ul>
-                        <li><i class="fas fa-link"></i> 1 Connection</li>
-                        <li><i class="fas fa-clock"></i> 60s Time / 60s CD</li>
-                        <li><i class="fas fa-times-circle"></i> VIP: No</li>
-                    </ul>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>LRN Starter</h3>
+                        <span class="badge badge-bronze">Starter</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">38 <span>SAR</span></div>
+                        <ul class="specs-list">
+                            <li><strong>Connections:</strong> 1</li>
+                            <li><strong>Max Time:</strong> 60s</li>
+                            <li><strong>Cooldown:</strong> 60s</li>
+                            <li><strong>VIP:</strong> <span class="no">✗</span></li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                    </div>
                 </div>
+
                 <!-- Advanced -->
-                <div class="plan-card">
-                    <h3>LRN Advanced</h3>
-                    <div class="price">45<span>SAR</span></div>
-                    <ul>
-                        <li><i class="fas fa-link"></i> 1 Connection</li>
-                        <li><i class="fas fa-clock"></i> 60s Time / 40s CD</li>
-                        <li><i class="fas fa-check-circle"></i> VIP: Yes</li>
-                    </ul>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>LRN Advanced</h3>
+                        <span class="badge badge-silver">Advanced</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">45 <span>SAR</span></div>
+                        <ul class="specs-list">
+                            <li><strong>Connections:</strong> 1</li>
+                            <li><strong>Max Time:</strong> 60s</li>
+                            <li><strong>Cooldown:</strong> 40s</li>
+                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                    </div>
                 </div>
-                <!-- PRO -->
-                <div class="plan-card featured">
-                    <div class="badge">Most Popular</div>
-                    <h3>LRN Pro</h3>
-                    <div class="price">80<span>SAR</span></div>
-                    <ul>
-                        <li><i class="fas fa-link"></i> 2 Connections</li>
-                        <li><i class="fas fa-clock"></i> 120s Time / 25s CD</li>
-                        <li><i class="fas fa-check-circle"></i> VIP: Yes</li>
-                    </ul>
+
+                <!-- Pro -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>LRN Pro</h3>
+                        <span class="badge badge-gold">Pro</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">80 <span>SAR</span></div>
+                        <ul class="specs-list">
+                            <li><strong>Connections:</strong> 2</li>
+                            <li><strong>Max Time:</strong> 120s</li>
+                            <li><strong>Cooldown:</strong> 25s</li>
+                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                    </div>
                 </div>
+
                 <!-- Elite -->
-                <div class="plan-card">
-                    <h3>LRN Elite</h3>
-                    <div class="price">130<span>SAR</span></div>
-                    <ul>
-                        <li><i class="fas fa-link"></i> 2 Connections</li>
-                        <li><i class="fas fa-clock"></i> 120s Time / 10s CD</li>
-                        <li><i class="fas fa-star"></i> Own Methods</li>
-                    </ul>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>LRN Elite</h3>
+                        <span class="badge badge-purple">Elite</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">130 <span>SAR</span></div>
+                        <ul class="specs-list">
+                            <li><strong>Connections:</strong> 2</li>
+                            <li><strong>Max Time:</strong> 120s</li>
+                            <li><strong>Cooldown:</strong> 10s</li>
+                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
+                            <li><strong>Extra:</strong> Own Methods</li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                    </div>
                 </div>
+
                 <!-- Ultimate -->
-                <div class="plan-card ultimate">
-                    <h3>LRN Ultimate</h3>
-                    <div class="price">225<span>SAR</span></div>
-                    <ul>
-                        <li><i class="fas fa-link"></i> 3 Connections</li>
-                        <li><i class="fas fa-clock"></i> 240s Time / 5s CD</li>
-                        <li><i class="fas fa-magic"></i> Custom Design & Method</li>
-                    </ul>
+                <div class="card ultimate-card">
+                    <div class="card-header">
+                        <h3>LRN Ultimate</h3>
+                        <span class="badge badge-legendary">Ultimate</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">225 <span>SAR</span></div>
+                        <ul class="specs-list">
+                            <li><strong>Connections:</strong> 3</li>
+                            <li><strong>Max Time:</strong> 240s</li>
+                            <li><strong>Cooldown:</strong> 5s</li>
+                            <li><strong>VIP:</strong> <span class="yes">✓</span></li>
+                            <li><strong>Extra:</strong> Custom Method + Design</li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Add-ons -->
-            <div class="addons-bar">
-                <span><i class="fas fa-plus"></i> Custom Method: 25 SAR</span>
-                <span><i class="fas fa-plus"></i> Custom Design: 50 SAR</span>
+            <!-- الإضافات -->
+            <div class="addons-section">
+                <h3>🧩 الإضافات</h3>
+                <div class="addons-grid">
+                    <div class="addon-card">
+                        <span class="addon-icon">⚡</span>
+                        <p>Custom Named Method</p>
+                        <span class="addon-price">25 SAR</span>
+                    </div>
+                    <div class="addon-card">
+                        <span class="addon-icon">🎨</span>
+                        <p>Custom Design</p>
+                        <span class="addon-price">50 SAR</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Section 3: API -->
-        <section id="api">
-            <h2 class="main-title">API Access | واجهة الربط</h2>
-            <div class="api-grid">
-                <div class="api-card">
-                    <div class="api-header">1 Connection</div>
-                    <p>10K+ Bots | VIP Access | 25s CD | 60s Time</p>
-                    <div class="api-price">80$ <span>/ month</span></div>
+        <!-- قسم API -->
+        <section class="service-section">
+            <div class="section-header">
+                <span class="section-icon">🔌</span>
+                <h2>API</h2>
+            </div>
+            <div class="cards-grid api-grid">
+                <!-- API 1 Con -->
+                <div class="card api-card">
+                    <div class="card-header">
+                        <h3>API 1 Connection</h3>
+                        <span class="badge badge-silver">Basic</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">80<span class="currency">$</span></div>
+                        <ul class="specs-list">
+                            <li><strong>Connections:</strong> 1</li>
+                            <li><strong>Cooldown:</strong> 25s</li>
+                            <li><strong>Max Time:</strong> 60s</li>
+                            <li><strong>Duration:</strong> 30 Days</li>
+                            <li><strong>Methods:</strong> All 10k+ Bots</li>
+                            <li><strong>Account:</strong> VIP</li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                    </div>
                 </div>
-                <div class="api-card">
-                    <div class="api-header">2 Connections</div>
-                    <p>10K+ Bots | VIP Access | 25s CD | 60s Time</p>
-                    <div class="api-price">120$ <span>/ month</span></div>
+
+                <!-- API 2 Con -->
+                <div class="card api-card featured-api">
+                    <div class="card-badge">الأفضل قيمة</div>
+                    <div class="card-header">
+                        <h3>API 2 Connection</h3>
+                        <span class="badge badge-gold">Premium</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">120<span class="currency">$</span></div>
+                        <ul class="specs-list">
+                            <li><strong>Connections:</strong> 2</li>
+                            <li><strong>Cooldown:</strong> 25s</li>
+                            <li><strong>Max Time:</strong> 60s</li>
+                            <li><strong>Duration:</strong> 30 Days</li>
+                            <li><strong>Methods:</strong> All 10k+ Bots</li>
+                            <li><strong>Account:</strong> VIP</li>
+                        </ul>
+                        <a href="https://discord.gg/lrn" target="_blank" class="btn-buy-small">🎫 شراء</a>
+                    </div>
                 </div>
             </div>
         </section>
-    </div>
+    </main>
 
     <footer>
-        <div class="footer-content">
-            <p>Developed by <span>h9exe</span> | Join Discord to Order</p>
-            <a href="https://discord.gg/lrn" class="discord-btn"><i class="fab fa-discord"></i> Discord Server</a>
+        <div class="container">
+            <p>© 2024 LRN Hub - جميع الحقوق محفوظة</p>
+            <p>للطلب والاستفسار: <a href="https://discord.gg/lrn" target="_blank">discord.gg/lrn</a></p>
         </div>
     </footer>
 
