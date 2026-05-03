@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const follower = document.querySelector('.cursor-follower');
     
     if (cursor && follower) {
-        // Ensure they are visible
         cursor.style.display = 'block';
         follower.style.display = 'block';
 
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.clientX;
             const y = e.clientY;
             
-            // Use requestAnimationFrame for smoother movement
             requestAnimationFrame(() => {
                 cursor.style.left = x + 'px';
                 cursor.style.top = y + 'px';
