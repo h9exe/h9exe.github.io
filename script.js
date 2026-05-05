@@ -113,4 +113,23 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // 8. Music Player
+    const audio = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('musicToggle');
+
+    if (musicBtn && audio) {
+        musicBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.volume = 0.3;
+                audio.play();
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicBtn.classList.add('playing');
+            } else {
+                audio.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+                musicBtn.classList.remove('playing');
+            }
+        });
+    }
 });
