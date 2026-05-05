@@ -1074,8 +1074,8 @@ section {
 /* ==================== Music Player ==================== */
 .music-player {
     position: fixed;
-    bottom: 90px;
-    right: 30px;
+    bottom: 30px;
+    left: 30px;
     z-index: 9999;
 }
 
