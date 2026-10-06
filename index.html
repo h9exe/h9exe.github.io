@@ -11,6 +11,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('lrn-theme') || 'cyber';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { document.documentElement.setAttribute('data-theme', 'cyber'); }
+        })();
+    </script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Preloader -->
@@ -52,9 +68,25 @@
                 <a href="#pricing" class="nav-link" data-section="pricing">
                     <i class="fas fa-tags"></i> الأسعار
                 </a>
+                <a href="#infra3d" class="nav-link" data-section="infra3d">
+                    <i class="fas fa-network-wired"></i> البنية 3D
+                </a>
                 <a href="#stats" class="nav-link" data-section="stats">
                     <i class="fas fa-chart-bar"></i> الإحصائيات
                 </a>
+                <div class="theme-picker" id="themePicker">
+                    <button class="theme-toggle" id="themeToggle" title="تغيير الثيم" aria-label="تغيير الثيم">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button class="theme-item" data-theme="cyber"><span class="swatch" style="background:#6c5ce7"></span> نيون</button>
+                        <button class="theme-item" data-theme="matrix"><span class="swatch" style="background:#00e676"></span> ماتريكس</button>
+                        <button class="theme-item" data-theme="ocean"><span class="swatch" style="background:#00cec9"></span> محيطي</button>
+                        <button class="theme-item" data-theme="blood"><span class="swatch" style="background:#ff2d55"></span> قرمزي</button>
+                        <button class="theme-item" data-theme="gold"><span class="swatch" style="background:#ffb300"></span> ذهبي</button>
+                        <button class="theme-item" data-theme="ghost"><span class="swatch" style="background:#e6edf3"></span> شبحي</button>
+                    </div>
+                </div>
                 <a href="https://discord.gg/lrn" target="_blank" class="nav-cta">
                     <i class="fab fa-discord"></i> فتح تذكرة
                 </a>
@@ -115,10 +147,8 @@
             </div>
         </div>
         <div class="hero-visual">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="floating-shape shape-3"></div>
-            <div class="hero-card-3d">
+            <canvas id="hero-canvas" class="hero-canvas"></canvas>
+            <div class="hero-card-3d" id="heroCard">
                 <div class="card-3d-inner">
                     <i class="fas fa-shield-halved"></i>
                     <h3>حماية متكاملة</h3>
@@ -445,6 +475,141 @@
         </div>
     </section>
 
+    <!-- ==================== 3D Infrastructure Section ==================== -->
+    <section id="infra3d" class="infra3d">
+        <div class="section-header">
+            <span class="section-subtitle">بنية تحتية تفاعلية</span>
+            <h2 class="section-title">
+                مركز البيانات <span class="gradient-text">ثلاثي الأبعاد</span>
+            </h2>
+            <p class="section-description">
+                سيرفرات، سويتشات، راوترات وشبكات — حرّك المشهد بالسحب، قرّب بالعجلة، واضغط أي جهاز لعرض تفاصيله،
+                وبدّل الطبقات والثيمات كما تحب.
+            </p>
+        </div>
+
+        <!-- Control Bar -->
+        <div class="dc-controls">
+            <div class="dc-control-group">
+                <span class="dc-group-label"><i class="fas fa-layer-group"></i> الطبقات</span>
+                <button class="dc-chip active" data-layer="devices"><i class="fas fa-server"></i> الأجهزة</button>
+                <button class="dc-chip active" data-layer="network"><i class="fas fa-project-diagram"></i> الشبكة</button>
+                <button class="dc-chip active" data-layer="data"><i class="fas fa-bolt"></i> البيانات</button>
+                <button class="dc-chip active" data-layer="labels"><i class="fas fa-tag"></i> التسميات</button>
+                <button class="dc-chip active" data-layer="floor"><i class="fas fa-border-all"></i> الأرضية</button>
+            </div>
+            <div class="dc-control-group">
+                <span class="dc-group-label"><i class="fas fa-palette"></i> ثيم المشهد</span>
+                <button class="dc-swatch active" data-scene="dark" style="--sw:#6c5ce7" title="داكن نيون"></button>
+                <button class="dc-swatch" data-scene="matrix" style="--sw:#00e676" title="ماتريكس"></button>
+                <button class="dc-swatch" data-scene="cyan" style="--sw:#00cec9" title="سايبر"></button>
+                <button class="dc-swatch" data-scene="red" style="--sw:#ff2d55" title="حرب"></button>
+                <button class="dc-swatch" data-scene="gold" style="--sw:#ffb300" title="ذهبي"></button>
+            </div>
+            <div class="dc-control-group">
+                <span class="dc-group-label"><i class="fas fa-sliders-h"></i> العرض</span>
+                <button class="dc-chip active" id="btnAutoRotate"><i class="fas fa-sync-alt"></i> دوران</button>
+                <button class="dc-chip" id="btnExplode"><i class="fas fa-expand-arrows-alt"></i> فصل الطبقات</button>
+                <button class="dc-chip" id="btnWireframe"><i class="fas fa-cubes"></i> هيكل سلكي</button>
+                <button class="dc-chip" id="btnResetCam"><i class="fas fa-crosshairs"></i> إعادة ضبط</button>
+            </div>
+        </div>
+
+        <!-- Viewport -->
+        <div class="dc-viewport" id="dcViewport">
+            <canvas id="dc-canvas"></canvas>
+
+            <!-- HUD: live stats -->
+            <div class="dc-hud dc-hud-stats">
+                <div class="hud-chip"><span class="hud-dot"></span><b id="hudFps">60</b> FPS</div>
+                <div class="hud-chip"><i class="fas fa-network-wired"></i><b id="hudNodes">0</b> عقدة</div>
+                <div class="hud-chip"><i class="fas fa-exchange-alt"></i><b id="hudTraffic">0</b> Gbps</div>
+                <div class="hud-chip"><i class="fas fa-shield-halved"></i><b id="hudUptime">99.9</b>%</div>
+            </div>
+
+            <!-- HUD: legend -->
+            <div class="dc-hud dc-hud-legend">
+                <span><i class="dot" style="--c:#00e676"></i> يعمل</span>
+                <span><i class="dot" style="--c:#ffb300"></i> حمل مرتفع</span>
+                <span><i class="dot" style="--c:#ff2d55"></i> تحذير</span>
+                <span><i class="dot" style="--c:#6c5ce7"></i> مغلق</span>
+            </div>
+
+            <!-- Tooltip -->
+            <div class="dc-tooltip" id="dcTooltip"></div>
+
+            <!-- Device info panel -->
+            <aside class="dc-info" id="dcInfo">
+                <button class="dc-info-close" id="dcInfoClose"><i class="fas fa-times"></i></button>
+                <div class="dc-info-head">
+                    <div class="dc-info-icon" id="dcInfoIcon"><i class="fas fa-server"></i></div>
+                    <div>
+                        <h4 id="dcInfoName">—</h4>
+                        <span id="dcInfoType">—</span>
+                    </div>
+                </div>
+                <div class="dc-info-status" id="dcInfoStatus"><span class="dot"></span> —</div>
+                <ul class="dc-info-specs" id="dcInfoSpecs"></ul>
+                <div class="dc-info-bars" id="dcInfoBars"></div>
+                <div class="dc-info-links" id="dcInfoLinks"></div>
+            </aside>
+
+            <!-- Hint -->
+            <div class="dc-hint"><i class="fas fa-mouse-pointer"></i> اسحب للدوران • عجلة للتقريب • اضغط جهازاً للتفاصيل</div>
+
+            <!-- Loading -->
+            <div class="dc-loading" id="dcLoading"><div class="dc-loader-ring"></div><span>جارٍ بناء مركز البيانات…</span></div>
+        </div>
+
+        <!-- Rack strip / quick jump -->
+        <div class="dc-rackstrip" id="dcRackStrip"></div>
+
+        <!-- Hardware cards -->
+        <div class="hw-grid">
+            <article class="hw-card tilt">
+                <div class="hw-icon"><i class="fas fa-server"></i></div>
+                <h3>سيرفرات الحوسبة</h3>
+                <p>أبجيات كاملة موزّعة على 4 رفوف مع تحميل لحظي وحالة كل وحدة تخزين ومعالجة.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> 24 وحدة تخزين NVMe</li>
+                    <li><i class="fas fa-check"></i> مراقبة حرارة لحظية</li>
+                    <li><i class="fas fa-check"></i> تبديل ساخن للوحدات</li>
+                </ul>
+            </article>
+            <article class="hw-card tilt featured">
+                <span class="hw-badge">قلب الشبكة</span>
+                <div class="hw-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>سويتشات النواة</h3>
+                <p>سويتشات 48 منفذ بسرعة 10G مع توازن حمل تلقائي بين المسارات.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> 48 × 10G SFP+</li>
+                    <li><i class="fas fa-check"></i> طاقة مزدوجة PSU</li>
+                    <li><i class="fas fa-check"></i> VLAN + QoS</li>
+                </ul>
+            </article>
+            <article class="hw-card tilt">
+                <div class="hw-icon"><i class="fas fa-wifi"></i></div>
+                <h3>راوترات وشبكات</h3>
+                <p>توجيه ذكي مع جدار حماية ومزج سلطات بين مناطق الشبكة المختلفة.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> BGP / OSPF</li>
+                    <li><i class="fas fa-check"></i> DDoS Scrubbing</li>
+                    <li><i class="fas fa-check"></i> VPN Site-to-Site</li>
+                </ul>
+            </article>
+            <article class="hw-card tilt">
+                <div class="hw-icon"><i class="fas fa-cloud"></i></div>
+                <h3>الحوسبة السحابية</h3>
+                <p>عقد سحابية خارجية مرتبطة بمركز البيانات عبر خطوط مُهدّأة.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Edge Cache</li>
+                    <li><i class="fas fa-check"></i> Auto Scale</li>
+                    <li><i class="fas fa-check"></i> Anycast DNS</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
     <!-- Stats Section -->
     <section id="stats" class="stats">
         <div class="stats-overlay"></div>
@@ -520,6 +685,7 @@
                     <a href="#home">الرئيسية</a>
                     <a href="#services">الخدمات</a>
                     <a href="#pricing">الأسعار</a>
+                    <a href="#infra3d">البنية 3D</a>
                     <a href="#stats">الإحصائيات</a>
                 </div>
                 <div class="footer-links">
@@ -559,5 +725,6 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="particles.js"></script>
     <script src="script.js"></script>
+    <script type="module" src="scene3d.js"></script>
 </body>
 </html>
