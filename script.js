@@ -132,4 +132,92 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 9. Theme Picker
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMenu = document.getElementById('themeMenu');
+    const applyTheme = (name, save = true) => {
+        document.documentElement.setAttribute('data-theme', name);
+        if (save) { try { localStorage.setItem('lrn-theme', name); } catch (e) {} }
+        document.querySelectorAll('.theme-item').forEach(i => i.classList.toggle('active', i.dataset.theme === name));
+        window.dispatchEvent(new CustomEvent('lrn:themechange', { detail: { theme: name } }));
+    };
+    if (themeToggle && themeMenu) {
+        const storedTheme = (() => { try { return localStorage.getItem('lrn-theme') || 'cyber'; } catch (e) { return 'cyber'; } })();
+        applyTheme(storedTheme, false);
+        themeToggle.addEventListener('click', e => {
+            e.stopPropagation();
+            themeMenu.classList.toggle('open');
+        });
+        themeMenu.querySelectorAll('.theme-item').forEach(item => {
+            item.addEventListener('click', () => {
+                applyTheme(item.dataset.theme);
+                themeMenu.classList.remove('open');
+            });
+        });
+        document.addEventListener('click', e => {
+            if (!themeMenu.contains(e.target) && e.target !== themeToggle) themeMenu.classList.remove('open');
+        });
+    }
+
+    // 10. 3D Tilt on cards
+    const tiltEls = document.querySelectorAll('.tilt, .service-card, .pricing-card, .stat-box, .hw-card');
+    tiltEls.forEach(el => {
+        el.style.transformStyle = 'preserve-3d';
+        el.addEventListener('pointermove', e => {
+            if (e.pointerType === 'touch') return;
+            const r = el.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            const boost = el.classList.contains('featured') || el.classList.contains('popular') ? 1.4 : 1;
+            el.style.transition = 'transform 0.08s ease-out';
+            el.style.transform =
+                `perspective(900px) rotateY(${px * 12 * boost}deg) rotateX(${-py * 12 * boost}deg) translateZ(18px)`;
+        });
+        el.addEventListener('pointerleave', () => {
+            el.style.transition = 'transform 0.5s cubic-bezier(.22,1,.36,1)';
+            el.style.transform = '';
+        });
+    });
+
+    // 11. Hero card parallax
+    const heroCard = document.getElementById('heroCard');
+    if (heroCard) {
+        const hero = document.getElementById('home');
+        hero.addEventListener('pointermove', e => {
+            if (e.pointerType === 'touch') return;
+            const r = hero.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            heroCard.style.animation = 'none';
+            heroCard.style.transform = `translateY(-50%) perspective(800px) rotateY(${px * 16}deg) rotateX(${-py * 16}deg)`;
+        });
+        hero.addEventListener('pointerleave', () => {
+            heroCard.style.transform = 'translateY(-50%)';
+            heroCard.style.animation = '';
+        });
+    }
+
+    // 12. Active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link[data-section]');
+    if (sections.length && navLinks.length) {
+        const spy = new IntersectionObserver(entries => {
+            entries.forEach(en => {
+                if (en.isIntersecting) {
+                    navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === en.target.id));
+                }
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        sections.forEach(s => spy.observe(s));
+    }
+
+    // 13. 3D scene fallback (CDN / WebGL issues)
+    setTimeout(() => {
+        const load = document.getElementById('dcLoading');
+        if (load && !load.classList.contains('hide') && load.querySelector('.dc-loader-ring')) {
+            load.querySelector('.dc-loader-ring').remove();
+            load.insertAdjacentHTML('beforeend', '<span>تعذّر تحميل المشهد ثلاثي الأبعاد — تأكد من اتصال الإنترنت (Three.js من CDN).</span>');
+        }
+    }, 9000);
 });
